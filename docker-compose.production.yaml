@@ -5,7 +5,14 @@ services:
     image: chatwoot/chatwoot:latest
     env_file: .env ## Change this file for customized env variables
     volumes:
-      - storage_data:/app/storage
+      - storage_data:/app/storage   # DIRETORIO DO ARQUIVO DE CONVERSA
+      - chatwoot_public:/app        # DIRETORIO DE TODOS OS ARQUIVOS DO CHATWOOT
+
+# Usar Mailhog (recomendado para local-first)
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "8025:8025"
 
   rails:
     <<: *base
@@ -13,7 +20,8 @@ services:
       - postgres
       - redis
     ports:
-      - '127.0.0.1:3000:3000'
+      #- '127.0.0.1:3000:3000'    ->  Manter localhost (só para proxy reverso) e se usar Nginx / Traefik / EasyPanel proxy
+      - '3000:3000'               
     environment:
       - NODE_ENV=production
       - RAILS_ENV=production
