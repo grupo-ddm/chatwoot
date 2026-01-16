@@ -1,7 +1,9 @@
-FROM chatwoot:development
+FROM chatwoot/chatwoot:latest
 
 ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
+
+WORKDIR /app
 
 RUN chmod +x docker/entrypoints/vite.sh
 
