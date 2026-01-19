@@ -3,7 +3,7 @@ version: '3'
 services:
   base: &base
     image: chatwoot/chatwoot:latest
-    env_file: .env ## Change this file for customized env variables
+    #env_file: .env  Change this file for customized env variables
     volumes:
       - storage_data:/app/storage   # DIRETORIO DO ARQUIVO DE CONVERSA
       - chatwoot_public:/app        # DIRETORIO DE TODOS OS ARQUIVOS DO CHATWOOT
@@ -62,8 +62,8 @@ services:
   redis:
     image: redis:alpine
     restart: always
-    command: ["sh", "-c", "redis-server --requirepass \"$REDIS_PASSWORD\""]
-    env_file: .env
+    command: ["sh", "-c", "redis-server --requirepass", "70e9d275764f209ee2d3906357ece9b7"]
+    #env_file: .env
     volumes:
       - redis_data:/data
     #ports:
